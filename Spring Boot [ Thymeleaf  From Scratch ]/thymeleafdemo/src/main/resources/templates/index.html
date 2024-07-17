@@ -1,0 +1,90 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thymeleaf Demo</title>
+<link rel="stylesheet" href="/css/styles.css">
+
+
+</head>
+
+<body style="background-color: #E5E6D8">
+	<h1>List Example</h1>
+	<hr>
+	<b th:text="${data}"></b>
+	<h1>Traverse One by One Example</h1>
+	<hr>
+	<ul th:each="value,status : ${data}">
+		<li th:text="${status.index+1}+' '+${value}"></li>
+	</ul>
+
+	<!-- Conditional in Thymeleaf -->
+
+	<h1>Conditional in Thymeleaf</h1>
+
+	<h2>1 : Elvis Operator</h2>
+	<p>condition ? "true part" : "false part"</p>
+
+
+	<h2>2 : If-Unless</h2>
+	<p>th:if</p>
+	<p>th:unless</p>
+
+	<h2>3 : Switch Case</h2>
+	<p>condition ? "true part" : "false part"</p>
+
+	<div>
+		<h3>Conditional Rendering Ex Elvis Operator</h3>
+		<hr>
+		<ul th:each="value,status : ${data}">
+			<li th:style="${status.odd} ? 'color:pink;font-weight:bold' : ''"
+				th:text="${value}"></li>
+		</ul>
+		<!-- 
+				Attributes of Status 
+	index: it shows current index starting with 0
+	count: the number of elements processed so far
+	size: the total number of elements in the list
+	even/odd: checks if the current iteration is the first one
+	last: checks if the current iteration is the last one
+
+	 -->
+		<h3>Conditional Rendering EX 2 for Elvis Operator</h3>
+		<hr>
+		<span th:text="${isActive} ? 'ACTIVE' : 'NOT ACTIVE' "></span> <br>
+		User is <span th:style="${isActive} ? 'color:green' : 'color:red' "
+			th:text="${isActive} ? 'ACTIVE' : 'NOT ACTIVE' "></span>
+	</div>
+
+
+	<div >
+
+		<h3>Conditional Rendering Example for If Unless</h3>
+		<hr>
+		<h1 th:if="${gender}=='M'">Male</h1>
+
+		<h1 th:unless="${gender}=='M'">Female</h1>
+
+	</div>
+
+
+	<div >
+
+		<h3>Conditional Rendering Example for Switch case</h3>
+		<hr>
+		<span th:switch="${switchData}">
+			<h1 th:case="red">User pass red....</h1>
+			<h1 th:case="green">User pass green....</h1>
+			<h1 th:case="black">User pass black....</h1>
+			<h1 th:case="*">No matching case...</h1>
+		</span>
+	</div>
+
+
+
+
+
+
+</body>
+
+</html>
